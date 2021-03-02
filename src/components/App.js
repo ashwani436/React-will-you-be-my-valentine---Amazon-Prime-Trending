@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class App extends React.Component {
+class App extends React.Component{
   constructor(props) {
     super(props);
 
-    this.state = {
+ this.state ={
       currentSlide: 0,
       nextDisabled: false,
       prevDisabled: false,
@@ -62,31 +62,32 @@ class App extends React.Component {
 
   render() {
     const { slides } = this.props;
+  //  console.log(slides);
     return (
       <div>
         <div id="navigation">
           <button
-            data-testid="button-restart"
             onClick={this.resandler}
-            data-testid="button-restart">
+            data-testid="button-restart"
+            disabled={this.state.currentSlide === 0}>
             Restart
           </button>
           <button
             data-testid="button-prev"
             onClick={this.prevHandler}
-            data-testid="button-prev"
+          
             disabled={this.state.currentSlide === 0}>
             Prev
           </button>
           <button
-            data-testid="button-next"
+            
             onClick={this.nextHandler}
             data-testid="button-next"
             disabled={this.state.currentSlide === this.props.slides.length - 1}>
             Next
           </button>
         </div>
-        {slides.map((slide, i) => {
+        {slides.map((slide,i) => {
           return i === this.state.currentSlide ? (
             <div id="slide" key={slide + i}>
               <h1 data-testid="title">{slide.title}</h1>
